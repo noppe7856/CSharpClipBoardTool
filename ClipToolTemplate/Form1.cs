@@ -14,7 +14,17 @@ namespace ClipToolTemplate
     {
         public Form1()
         {
-            InitializeComponent();
+            //InitializeComponent();
+            // ClipBoardからstring配列形式で取得する
+            string[] input = Clipboard.GetText(TextDataFormat.UnicodeText).Replace(Environment.NewLine, "\n").Split('\n');
+
+
+            // TODO
+            string[] edit = input.Select(n => n + " a").ToArray();
+
+            // データをClibboardに設定する。
+            string output = string.Join(Environment.NewLine, edit);
+            Clipboard.SetText(output, TextDataFormat.UnicodeText);
         }
     }
 }
